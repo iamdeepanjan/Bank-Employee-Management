@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { Component, inject } from '@angular/core';
+import { Router, RouterOutlet } from '@angular/router';
+import { AuthService } from './authentication/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -10,4 +11,12 @@ import { RouterOutlet } from '@angular/router';
 })
 export class AppComponent {
   title = 'frontend-bank-employee-mng';
+
+  private router = inject(Router);
+  private authService = inject(AuthService);
+
+  logout(){
+    this.authService.clearUserFromLocalStorage();
+    this.router.navigate(['/login']);
+  }
 }

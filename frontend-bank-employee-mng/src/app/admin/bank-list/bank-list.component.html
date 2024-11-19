@@ -1,0 +1,21 @@
+<div class="heading">All Branch Details</div>
+<div class="container">
+    <table>
+        <thead>
+            <tr>
+                <th>Bank Name</th>
+                <th>Branch Name</th>
+                <th>Branch Code</th>
+            </tr>
+        </thead>
+        @for (bank of banks; track bank.id) {
+            <tbody>
+                <tr>
+                    <td>{{bank.bankName}}</td>
+                    <td>{{bank.branchName}}</td>
+                    <td>{{bank.branchCode}}</td>
+                </tr>
+            </tbody>
+        }    
+    </table>
+</div>    

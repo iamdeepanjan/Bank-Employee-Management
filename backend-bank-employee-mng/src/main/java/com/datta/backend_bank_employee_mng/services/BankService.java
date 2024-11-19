@@ -20,8 +20,15 @@ public class BankService {
 		return bankRepository.findAll();
 	}
 	
-	public Bank addbank(Bank bank) {
-		return bankRepository.save(bank);
+	public MessageResponse addbank(Bank bank) {
+		if(bankRepository.existsByBranchName(bank.getBranchName())) {
+			return new MessageResponse("BranchName is already in use");
+		}
+		if(bankRepository.existsByBranchCode(bank.getBranchCode())) {
+			return new MessageResponse("BranchCode is already in use");
+		}
+		bankRepository.save(bank);
+		return new MessageResponse("Bank is added successfully");
 	}
 	
 	public MessageResponse removeBank(Long id) {

@@ -1,0 +1,46 @@
+nav{
+    background-color: rgba(0, 0, 0, 0.215);
+    padding: 25px;
+    position: relative;
+}
+
+.logo{
+    display: inline-block;
+    margin: 0 20px;
+    font-family: 'Segoe UI';
+    font-weight: 400;
+    font-size: 25px;
+    color: rgba(50, 50, 50, 0.87);
+}
+
+.logout{
+    display: inline;
+    position: absolute;
+    right: 15px;
+    padding: 8px 15px;
+    font-size: 15px;
+    border-radius: 50px;
+    border: 0;
+    transition: background-color 0.3s, color 0.3s;
+    background-color: rgb(223, 30, 30);
+    color: white;
+}
+
+.logout:hover{
+    background-color: rgb(255, 111, 0);
+}
+button{
+    cursor: pointer;
+}
+
+footer{
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background-color: rgb(67, 67, 67);
+    color: white;
+    padding: 6px 0;
+    font-size: 10px;
+    text-align: center;
+    text-transform: uppercase;
+}

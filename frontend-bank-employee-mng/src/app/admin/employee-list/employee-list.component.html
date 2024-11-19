@@ -1,0 +1,42 @@
+<div class="heading">All Employees</div>
+<div class="container">
+    <div class="dropdown">
+        <label for="branchSelect">Select Branch </label>
+        <select id="branchSelect" [(ngModel)]="branchId" (change)="filterEmployees()">
+            <option value="" selected>All Employees</option>
+            @for (bank of banks; track bank.id) {
+                <option [value]="bank.id">{{ bank.branchName }}</option>
+            }
+        </select>
+    </div>
+    <div class="container">
+        <table>
+            <thead>
+                <tr>
+                    <th>Employee ID</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Role</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                @for (employee of filteredEmployees; track employee.id) {
+                    <tr>
+                        <td>{{employee.empId}}</td>
+                        <td>{{employee.name}}</td>
+                        <td>{{employee.email}}</td>
+                        <td>{{employee.job}}</td>
+                        <td [ngClass]="employee.status ? 'approved' : 'check'">{{employee.status ? 'Approved' : 'Check'}}</td>
+                        <td>
+                            <button id="view" (click)="viewEmployeeById(employee.id)">View</button>
+                            <button id="update" (click)="updateEmployeeById(employee.id)">Update</button>
+                            <button id="delete" (click)="deleteEmployeeById(employee.id)">Delete</button>
+                        </td>
+                    </tr>
+                }    
+            </tbody>
+        </table>  
+    </div>
+</div>    

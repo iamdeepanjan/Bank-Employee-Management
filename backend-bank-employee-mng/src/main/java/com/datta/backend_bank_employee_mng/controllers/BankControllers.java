@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -19,6 +20,7 @@ import com.datta.backend_bank_employee_mng.services.BankService;
 
 @RestController
 @RequestMapping("/api/v1")
+@CrossOrigin(origins = "http://localhost:4200")
 public class BankControllers {
 	
 	@Autowired
@@ -30,8 +32,13 @@ public class BankControllers {
 	}
 	
 	@PostMapping("/banks")
-	public ResponseEntity<Bank> addNewBank(@RequestBody Bank bank){
-		return new ResponseEntity<Bank>(bankService.addbank(bank), HttpStatus.CREATED);
+	public ResponseEntity<MessageResponse> addNewBank(@RequestBody Bank bank){
+		MessageResponse message = bankService.addbank(bank);
+		if (message.getMessage().equals("BranchName is already in use") || 
+				message.getMessage().equals("BranchCode is already in use")) {
+			return new ResponseEntity<MessageResponse>(message,HttpStatus.BAD_REQUEST);
+		}
+		return new ResponseEntity<MessageResponse>(message, HttpStatus.CREATED);
 	}
 	
 	@DeleteMapping("/banks/{id}")

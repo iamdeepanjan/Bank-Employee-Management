@@ -1,0 +1,30 @@
+<h2>Add new branch to the bank</h2>
+<div class="container">
+    <form [formGroup]="addBankForm" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+            <label for="bankName">Bank Name</label>
+            <input type="text" id="bankName" formControlName="bankName" placeholder="Enter your branch name" readonly> 
+        </div>
+        <div class="form-group">
+            <label for="branchName">Branch Name</label>
+            <input type="text" id="branchName" formControlName="branchName" placeholder="Enter your branch name"> 
+        </div>
+        @if (addBankForm.get('branchName')?.touched && addBankForm.get('branchName')?.invalid) {
+            <div class="error">Branch name is required</div>
+        }
+        <div class="form-group">
+            <label for="branchCode">Branch Code</label>
+            <input type="text" id="branchCode" formControlName="branchCode" placeholder="Enter your branch code"> 
+        </div>
+        @if (addBankForm.get('branchCode')?.touched && addBankForm.get('branchCode')?.invalid) {
+            <div class="error">Branch code is required</div>
+        }
+        <div class="error">
+            {{errorMessage}}
+        </div>
+        <div class="form-group">
+            <button type="submit">Add</button>
+        </div>
+    </form>
+</div>
+<div><p>{{successMessage}}</p></div>

@@ -8,4 +8,6 @@ import com.datta.backend_bank_employee_mng.models.Bank;
 @Repository
 public interface BankRepository extends JpaRepository<Bank, Long> {
 
+    boolean existsByBranchName(String BranchName);
+	boolean existsByBranchCode(String BrnachCode);
 }

@@ -1,0 +1,91 @@
+.container{
+    width: 99%;
+    box-shadow: 4px 4px 8px 0 rgb(0, 0, 0, 0.2);
+}
+
+.heading {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-weight: 500;
+    font-size: 25px;
+    color: #444;
+    padding-bottom: 25px;
+}
+
+/* General Table Styling */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    font-size: 1em;
+    font-family: Arial, sans-serif;
+    text-align: left;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+/* Table Header */
+thead tr {
+    background-color: #007bff;
+    color: #ffffff;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+/* Header Cells */
+thead th {
+    padding: 12px 15px;
+}
+
+/* Table Body Rows */
+tbody tr {
+    border-bottom: 1px solid #dddddd;
+}
+
+tbody tr:nth-of-type(even) {
+    background-color: #f3f3f3;
+}
+
+tbody tr:hover {
+    background-color: #f1f1f1;
+}
+
+/* Table Data Cells */
+td {
+    padding: 12px 15px;
+    color: #333333;
+    font-size: 0.9em;
+}
+
+/* Responsive Design */
+@media screen and (max-width: 600px) {
+    table {
+        font-size: 0.8em;
+    }
+
+    thead tr {
+        display: none;
+    }
+
+    tbody tr {
+        display: block;
+        margin-bottom: 10px;
+    }
+
+    tbody td {
+        display: block;
+        text-align: right;
+        padding: 10px 15px;
+        position: relative;
+        border-bottom: 1px solid #ddd;
+    }
+
+    tbody td::before {
+        content: attr(data-label);
+        position: absolute;
+        left: 10px;
+        text-align: left;
+        font-weight: bold;
+        color: #007bff;
+    }
+}
