@@ -1,1 +1,47 @@
-<p>user-details works!</p>
+<div class="box">
+    <h2>Your Personal Information</h2>  
+    @if(employee){ 
+        <div class="container">
+            <div class="card-head">Basic Info</div>
+            <div class="field">
+                <div class="label">Employee ID </div> <div class="value">{{employee.empId}}</div>
+            </div>   
+            <div class="field">
+                <div class="label">Name </div> <div class="value">{{employee.name}}</div> 
+            </div>
+            <div class="field">
+                <div class="label">Job </div> <div class="value">{{employee.job}}</div> 
+            </div>                
+        </div>
+    } 
+    @if(employee){       
+        <div class="container">
+            <div class="card-head">Contact Info</div>
+            <div class="field">
+                <div class="label">Email </div> <div class="value">{{employee.email}}</div>
+            </div>   
+            <div class="field">
+                <div class="label">Phone </div> <div class="value" [ngClass]="(employee.mobileNo!=null) ? 'value' :'blank-value'">{{(employee.mobileNo!=null)?employee.mobileNo:"Not set"}}</div> 
+            </div>               
+        </div>
+    }    
+    @if(employee){       
+        <div class="container">
+            <div class="card-head">Home Location</div>
+            <div class="field">
+                <div class="label">Address </div> <div class="value" [ngClass]="(employee.address!=null) ? 'value' :'blank-value'">{{(employee.address!=null)?employee.address:"Not set"}}</div>
+            </div>                 
+        </div>
+    }  
+    @if(employee){     
+        <div class="container">
+            <div class="card-head">Work Location</div>
+            <div class="field">
+                <div class="label">Branch </div> <div class="value">{{employee.bank.branchName}}</div>
+            </div> 
+            <div class="field">
+                <div class="label">Branch Code</div> <div class="value">{{employee.bank.branchCode}}</div>
+            </div>                 
+        </div>
+    }    
+</div>

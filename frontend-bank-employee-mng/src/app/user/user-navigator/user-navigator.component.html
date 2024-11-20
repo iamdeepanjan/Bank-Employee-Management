@@ -1,1 +1,18 @@
-<p>user-navigator works!</p>
+<nav class="first-nav">
+    <a routerLink="home" routerLinkActive="active">Home</a>
+    <a routerLink="user-details" routerLinkActive="active">Basic Info</a>
+    <a routerLink="change-password" routerLinkActive="active">Security</a>
+    <a routerLink="update-details" routerLinkActive="active">Add More Info</a>
+</nav>
+<hr>
+
+<nav class="second-nav">
+    <a routerLink="home" routerLinkActive="active">Home</a>
+    <a routerLink="user-details" routerLinkActive="active">Basic Info</a>
+    <a routerLink="change-password" routerLinkActive="active">Security</a>
+    <a routerLink="update-details" routerLinkActive="active">Add More Info</a>
+</nav>
+
+<div class="content">
+    <router-outlet></router-outlet>
+</div>

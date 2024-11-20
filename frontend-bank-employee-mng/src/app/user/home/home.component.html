@@ -1,1 +1,43 @@
-<p>home works!</p>
+<div class="container">
+    @if(employee){
+        <div class="personal">
+            <div class="dp"><div class="avatar"></div></div>
+            <div class="welcome">Welcome, {{employee.name | titlecase}}</div>
+            <div class="info">
+                <div class="field">
+                    <div class="label">Employee ID </div> <div class="value">{{employee.empId}}</div>
+                </div>
+                <div class="field">
+                    <div class="label">Email </div> <div class="value">{{employee.email}}</div>
+                </div>
+                <div class="field">
+                    <div class="label">Role </div> <div class="value">{{employee.job}}</div> 
+                </div>
+                <div class="field">
+                    <div class="label">Branch </div> <div class="value">{{employee.bank.branchName}}</div>
+                </div>
+            </div>  
+            <div class="cards">
+                <div class="card">
+                    <div class="card-head">Change your Password</div>
+                    <div class="button" (click)="goToChangePassword()">Go</div>
+                </div>
+                <div class="card">
+                    <div class="card-head">Add More Information</div>
+                    <div class="button" (click)="goToAddDetails()">Go</div>
+                </div>
+            </div>  
+        </div>
+    }    
+    @if(employee){
+        <div class="others">
+            <div class="header">Your Peers in {{employee.bank.branchName}}</div>
+            @for(peer of otherEmployees; track peer.id){
+                <div class="details">
+                    <div class="value">{{peer.job}}</div>
+                    <div class="value">{{peer.name}}</div>
+                </div>
+            }                
+        </div>
+    }        
+</div>
