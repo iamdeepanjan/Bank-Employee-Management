@@ -5,7 +5,7 @@
             <label for="name">Name</label>
             <input type="text" id="name" formControlName="name" placeholder="Enter full name of employee"> 
         </div>
-        @if (addEmployeeForm.get('name')?.touched && addEmployeeForm.get('firstName')?.invalid) {
+        @if (addEmployeeForm.get('name')?.touched && addEmployeeForm.get('name')?.invalid) {
             <div class="error">Full name is required</div>
         }
         <div class="form-group">
@@ -16,7 +16,7 @@
             <div class="error">Email is required</div>
         }
         @if (addEmployeeForm.get('email')?.touched && addEmployeeForm.get('email')?.hasError('email')) {
-            <div class="error">Email is required</div>
+            <div class="error">Enter valid email</div>
         }
         @if (errorMessage) {
             <div class="error">
