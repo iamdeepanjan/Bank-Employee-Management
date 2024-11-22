@@ -46,7 +46,7 @@ export class AdminService {
   }
 
   approveEmployeeById(id:number): Observable<Object>{
-    return this.http.patch(this.url + '/employees/' + id  + '/approve', {headers: this.getHeaders()});
+    return this.http.patch(this.url + '/employees/approve/' + id , {}, {headers: this.getHeaders()});
   }
 
   deleteEmployeeById(id:number): Observable<Object>{

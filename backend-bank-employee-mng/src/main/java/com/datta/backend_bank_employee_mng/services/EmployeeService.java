@@ -68,22 +68,33 @@ public class EmployeeService {
 	}
 	
 	public MessageResponse updateEmployeeByAdmin(Long id, Employees employeesDetails) {
-		if(employeeRepository.existsByEmail(employeesDetails.getEmail())) {
-			return new MessageResponse("Email is already in use");
-		}
-		if(employeeRepository.existsByEmpId(employeesDetails.getEmpId())) {
-			return new MessageResponse("Employee id is already in use");
-		}
 		Employees employee = getEmployeeById(id);
-		employee.setEmpId(employeesDetails.getEmpId());
-		employee.setEmail(employeesDetails.getEmail());
-		employee.setName(employeesDetails.getName());
-		employee.setJob(employeesDetails.getJob());
-		employee.setBank(employeesDetails.getBank());
-		employee.setStatus(true);
-		employeeRepository.save(employee);
-		return new MessageResponse("User updated successfully");
-		
+		if(employee.getEmail().equals(employeesDetails.getEmail())) {
+			employee.setEmpId(employeesDetails.getEmpId());
+			employee.setEmail(employeesDetails.getEmail());
+			employee.setName(employeesDetails.getName());
+			employee.setJob(employeesDetails.getJob());
+			employee.setBank(employeesDetails.getBank());
+			employee.setStatus(true);
+			employeeRepository.save(employee);
+			return new MessageResponse("User updated successfully");
+		}
+		else {
+			if(employeeRepository.existsByEmail(employeesDetails.getEmail())) {
+				return new MessageResponse("Email is already in use");
+			}
+			if(employeeRepository.existsByEmpId(employeesDetails.getEmpId())) {
+				return new MessageResponse("Employee id is already in use");
+			}
+			employee.setEmpId(employeesDetails.getEmpId());
+			employee.setEmail(employeesDetails.getEmail());
+			employee.setName(employeesDetails.getName());
+			employee.setJob(employeesDetails.getJob());
+			employee.setBank(employeesDetails.getBank());
+			employee.setStatus(true);
+			employeeRepository.save(employee);
+			return new MessageResponse("User updated successfully");
+		}
 	}
 	
 	public MessageResponse approveEmployeeByAdmin(Long id) {

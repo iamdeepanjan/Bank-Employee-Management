@@ -1,7 +1,7 @@
 <div class="container">
     @if(employee){
         <div class="personal">
-            <div class="dp"><div class="avatar"></div></div>
+            <div class="dp"><div class="avatar" [appAvatar]="employee.name"></div></div>
             <div class="welcome">Welcome, {{employee.name | titlecase}}</div>
             <div class="info">
                 <div class="field">

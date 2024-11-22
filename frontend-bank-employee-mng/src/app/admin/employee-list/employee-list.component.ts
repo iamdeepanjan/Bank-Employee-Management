@@ -5,11 +5,14 @@ import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { AdminService } from '../admin.service';
+import { MatDialog } from '@angular/material/dialog';
+import { EmployeeDialogComponent } from '../employee-dialog/employee-dialog.component';
+import { MatCommonModule } from '@angular/material/core';
 
 @Component({
   selector: 'app-employee-list',
   standalone: true,
-  imports: [FormsModule,CommonModule],
+  imports: [FormsModule,CommonModule, MatCommonModule],
   templateUrl: './employee-list.component.html',
   styleUrl: './employee-list.component.css'
 })
@@ -22,33 +25,37 @@ export class EmployeeListComponent implements OnInit {
 
   private router = inject(Router);
   private adminService = inject(AdminService);
+  private dialog = inject(MatDialog);
 
   ngOnInit(): void {
-    this.adminService.getAllEmployees().subscribe(data => {
-      this.employees = data;
-      this.filteredEmployees = data;
-      console.log(this.employees);
-    });
+    this.loadAllEmployees()
     this.adminService.getAllBranches().subscribe(data => {
       this.banks = data;
     })
   }
 
-  viewEmployeeById(id:number):void {
-    this.router.navigate(['/admin/employee-detail',id]);
+  loadAllEmployees(): void {
+    this.adminService.getAllEmployees().subscribe(data => {
+      this.employees = data;
+      this.filteredEmployees = data;
+      console.log(this.employees);
+    });
   }
-  
-  updateEmployeeById(id:number):void {
-    this.router.navigate(['/admin/update-employee',id]);
-  }
-
-  deleteEmployeeById(id: number): void {
-    if (confirm('Are you sure you want to delete this employee?')) {
-      // this.adminService.deleteEmployee(id).subscribe(data => {
-      //   console.log(data);
-      //   this.getAllEmployees();
-      // });
-    }
+  openDialog(action: string, employee: Employee): void {
+    const dialogRef = this.dialog.open(EmployeeDialogComponent, {
+      data: {
+        action: action,
+        employee: employee
+      }, 
+      maxHeight: '500px',
+      maxWidth: '600px',
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      if(result){
+        console.log('Dialog result:', result);
+      }
+      this.loadAllEmployees();
+    })
   }
   
   

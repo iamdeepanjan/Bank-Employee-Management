@@ -30,9 +30,9 @@
                         <td>{{employee.job}}</td>
                         <td [ngClass]="employee.status ? 'approved' : 'check'">{{employee.status ? 'Approved' : 'Check'}}</td>
                         <td>
-                            <button id="view" (click)="viewEmployeeById(employee.id)">View</button>
-                            <button id="update" (click)="updateEmployeeById(employee.id)">Update</button>
-                            <button id="delete" (click)="deleteEmployeeById(employee.id)">Delete</button>
+                            <button id="view" (click)="openDialog('view', employee)">View</button>
+                            <button id="update" (click)="openDialog('update', employee)">Update</button>
+                            <button id="delete" (click)="openDialog('delete', employee)">Delete</button>
                         </td>
                     </tr>
                 }    

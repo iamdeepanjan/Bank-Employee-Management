@@ -1,0 +1,107 @@
+@if(data.action == 'view') {
+    <h2 mat-dialog-title>Employee Details</h2>
+    <mat-dialog-content class="card">
+        <span class="close" (click)="onCancel()">&times;</span>
+        <div class="field">
+            <label><strong>Employee ID: </strong></label>
+            <span class="value">{{data.employee.empId}}</span>
+        </div>
+        <div class="field">
+            <label><strong>Name: </strong></label>
+            <span class="value">{{data.employee.name}}</span>
+        </div>
+        <div class="field">
+            <label><strong>Email: </strong></label>
+            <span class="value">{{data.employee.email}}</span>
+        </div>
+        <div class="field">
+            <label><strong>Job: </strong></label>
+            <span class="value">{{data.employee.job}}</span>
+        </div>
+        @if(data.employee.address) {
+            <div class="field">
+                <label><strong>Address: </strong></label>
+                <span class="value">{{data.employee.address}}</span>
+            </div>
+        }
+        @if (data.employee.mobileNo) {
+            <div class="field">
+                <label><strong>Mobile No: </strong></label>
+                <span class="value">{{data.employee.mobileNo}}</span>
+            </div>
+        }
+        <div class="field">
+            <label><strong>Bank: </strong></label>
+            <span class="value">{{data.employee.bank.branchName}}</span>
+        </div>
+        <div class="field">
+            <label><strong>Branch Code: </strong></label>
+            <span class="value">{{data.employee.bank.branchCode}}</span>
+        </div>
+    </mat-dialog-content>
+    <mat-dialog-actions>
+        <button mat-button (click)="approveEmployee(data.employee.id)" class="approve">Aprrove</button>
+    </mat-dialog-actions>
+}
+
+@if(data.action == 'update'){
+    <h2 mat-dialog-title>Modify Employee Details</h2>
+    <mat-dialog-content class="container">
+        <form [formGroup]="updateForm">
+            <div class="form-group">
+                <label for="empId">Employee ID</label>
+                <input type="text" id="empId" formControlName="empId" placeholder="Enter your Employee ID" readonly>
+            </div>
+            <div class="form-group">
+                <label for="name">Name</label>
+                <input type="text" id="name" formControlName="name" placeholder="Enter full name of employee">
+            </div>
+            @if(updateForm.get('name')?.invalid && updateForm.get('name')?.touched){
+                <div class="error">Full name is required</div>
+            }
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="text" id="email" formControlName="email" placeholder="Enter your email">
+            </div>
+            @if(updateForm.get('email')?.invalid && updateForm.get('email')?.touched){
+                <div class="error">Email is required</div>
+            }
+            @if(updateForm.get('email')?.hasError('email') && updateForm.get('email')?.touched){
+                <div class="error">Enter valid email</div>
+            }
+            <div class="error">{{errorMessage}}</div>
+            <div class="form-group">
+                <label for="job">Job</label>
+                <input type="text" id="job" formControlName="job" placeholder="Enter job of employee">
+            </div>
+            @if(updateForm.get('job')?.invalid && updateForm.get('job')?.touched){
+                <div class="error">Job is required</div>
+            }
+            <div formGroupName="bank" class="from-group">
+                <label for="branchSelect">Bank</label>
+                <select name="branchSelect" id="branchSelect" formControlName="id">
+                    <option value="" disabled selected>Select Bank</option>
+                    @for (bank of banks; track bank.id) {
+                        <option [value]="bank.id">{{bank.branchName}}</option>
+                    }
+                </select>
+                @if(updateForm.get('bank.id')?.invalid && updateForm.get('bank.id')?.touched){
+                    <div class="error">Please select bank</div>
+                }
+            </div>
+            <div class="button">
+                <button type="button" (click)="onSubmitUpdate()">Update</button>
+            </div>
+        </form>
+    </mat-dialog-content>
+    <div><p>{{successMessage}}</p></div>
+}
+
+@if(data.action == 'delete'){
+    <h2 mat-dialog-title>Remove {{data.employee.name}}</h2>
+    <mat-dialog-content>Are you sure you want to remove this employee?</mat-dialog-content>
+    <mat-dialog-actions>
+        <button mat-button (click)="onCancel()" class="cancel">Cancel</button>
+        <button mat-button (click)="onConfirmDelete(data.employee.id)" class="delete">Remove</button>  
+    </mat-dialog-actions>    
+}

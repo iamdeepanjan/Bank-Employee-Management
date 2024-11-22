@@ -63,7 +63,7 @@ public class EmployeeByAdminController {
 		return new ResponseEntity<MessageResponse>(message, HttpStatus.OK);
 	}
 
-	@PatchMapping("/employees/{id}/approve")
+	@PatchMapping("/employees/approve/{id}")
 	@PreAuthorize("hasRole('ADMIN')")
 	public ResponseEntity<MessageResponse> approveEmployee(@PathVariable Long id){
 		return new ResponseEntity<MessageResponse>(employeeService.approveEmployeeByAdmin(id), HttpStatus.OK);

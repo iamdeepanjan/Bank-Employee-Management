@@ -3,11 +3,12 @@ import { Employee } from '../employee';
 import { UserService } from '../user.service';
 import { Router } from '@angular/router';
 import { TitleCasePipe } from '@angular/common';
+import { AvatarDirective } from '../../avatar.directive';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [TitleCasePipe],
+  imports: [TitleCasePipe, AvatarDirective],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })
